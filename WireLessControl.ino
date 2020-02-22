@@ -1,6 +1,10 @@
 #include <AccelStepper.h>
 
 //define step pin and directions for AccelStepper objects
+int enA = 9;
+int In1 = 11;
+int In2 = 10;
+
 AccelStepper stepperF(AccelStepper::DRIVER, 3, 2); //front
 AccelStepper stepperL(AccelStepper::DRIVER, 5, 4); //left
 AccelStepper stepperR(AccelStepper::DRIVER, 7, 6); //right
@@ -51,7 +55,9 @@ void loop() {
     stepperF.runSpeed();
     stepperL.runSpeed();
     stepperR.runSpeed();
-    
+
+    if (val == 'o')up();
+    else if(val == 'p')down();
   }
 }
 
@@ -107,6 +113,8 @@ void stp(){
   fMotor(0);
   rMotor(0);
   lMotor(0);
+  digitalWrite(In1,LOW;
+  digitalWrite(In2,LOW;
 }
 
 //Low Level Motor Functions
@@ -130,4 +138,16 @@ void lMotor(int spd){
   else if (spd<0) Serial.println("left motor counterclockwise");
   
   stepperL.setSpeed(spd);
+}
+//Linear actuator functions
+void up(){
+  digitalWrite(In1,HIGH);
+  digitlWrite(In2,LOW);
+  analogWrite(EnA,100);
+}
+
+void down(){
+  digitalWrite(In1,LOW);
+  digitlWrite(In2,HIGH);
+  analogWrite(EnA,100);
 }
